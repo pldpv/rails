@@ -13,14 +13,14 @@ import javax.persistence.ManyToOne;
 public class WorkingCapacity implements Serializable {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     @Column
-    private int line;
-    private int kmS;
-    private int mS;
-    private int kmE;
-    private int mE;
-    private float workingCapacity;
+    private Integer line;
+    private Integer kmS;
+    private Integer mS;
+    private Integer kmE;
+    private Integer mE;
+    private Float workingCapacity;
     @ManyToOne
     @JoinColumn(name="idRailway",referencedColumnName="idRailway")
     private Railway railway;
@@ -31,59 +31,59 @@ public class WorkingCapacity implements Serializable {
     @JoinColumn(name="namePch",referencedColumnName="nameFirm")
     private Firm firm;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getLine() {
+    public Integer getLine() {
         return line;
     }
 
-    public void setLine(int line) {
+    public void setLine(Integer line) {
         this.line = line;
     }
 
-    public int getKmS() {
+    public Integer getKmS() {
         return kmS;
     }
 
-    public void setKmS(int kmS) {
+    public void setKmS(Integer kmS) {
         this.kmS = kmS;
     }
 
-    public int getmS() {
+    public Integer getmS() {
         return mS;
     }
 
-    public void setmS(int mS) {
+    public void setmS(Integer mS) {
         this.mS = mS;
     }
 
-    public int getKmE() {
+    public Integer getKmE() {
         return kmE;
     }
 
-    public void setKmE(int kmE) {
+    public void setKmE(Integer kmE) {
         this.kmE = kmE;
     }
 
-    public int getmE() {
+    public Integer getmE() {
         return mE;
     }
 
-    public void setmE(int mE) {
+    public void setmE(Integer mE) {
         this.mE = mE;
     }
 
-    public float getWorkingCapacity() {
+    public Float getWorkingCapacity() {
         return workingCapacity;
     }
 
-    public void setWorkingCapacity(float workingCapacity) {
+    public void setWorkingCapacity(Float workingCapacity) {
         this.workingCapacity = workingCapacity;
     }
 

@@ -4,32 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 @Entity(name="scrap_metal")
-public class ScrapMetal implements Serializable{
-    @Id
-    @GeneratedValue
-    private int id;
+@PrimaryKeyJoinColumn(name="id",referencedColumnName="id")
+public class ScrapMetal 
+        extends RailsLocation implements Serializable{
     @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateScrapping;
-    private String whoScrapped;
-    @ManyToOne
-    @JoinColumn(name="idRails",referencedColumnName="idRail")
-    private RailsCharacteristics railsCharacteristics;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    private String whoScrapped;    
     public Date getDateScrapping() {
         return dateScrapping;
     }
@@ -44,13 +28,5 @@ public class ScrapMetal implements Serializable{
 
     public void setWhoScrapped(String whoScrapped) {
         this.whoScrapped = whoScrapped;
-    }
-
-    public RailsCharacteristics getRailsCharacteristics() {
-        return railsCharacteristics;
-    }
-
-    public void setRailsCharacteristics(RailsCharacteristics railsCharacteristics) {
-        this.railsCharacteristics = railsCharacteristics;
     }
 }

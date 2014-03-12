@@ -15,22 +15,22 @@ public class Deviation implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateMeasuring;
     private String measuring;
-    private int line;
-    private int pchu;
-    private int pd;
-    private int pdb;
-    private int km;
-    private int m;
+    private Integer line;
+    private Integer pchu;
+    private Integer pd;
+    private Integer pdb;
+    private Integer km;
+    private Integer m;
     private String deviation;
-    private int level;
-    private int excursion;
-    private int length;
-    private int rate;
+    private Integer level;
+    private Integer excursion;
+    private Integer deviationLength;
+    private Integer rate;
     @ManyToOne
     @JoinColumn(name = "idRailway", referencedColumnName = "idRailway")
     private Railway railway;
@@ -41,11 +41,11 @@ public class Deviation implements Serializable {
     @JoinColumn(name = "namePch", referencedColumnName = "nameFirm")
     private Firm firm;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -65,51 +65,51 @@ public class Deviation implements Serializable {
         this.measuring = measuring;
     }
 
-    public int getLine() {
+    public Integer getLine() {
         return line;
     }
 
-    public void setLine(int line) {
+    public void setLine(Integer line) {
         this.line = line;
     }
 
-    public int getPchu() {
+    public Integer getPchu() {
         return pchu;
     }
 
-    public void setPchu(int pchu) {
+    public void setPchu(Integer pchu) {
         this.pchu = pchu;
     }
 
-    public int getPd() {
+    public Integer getPd() {
         return pd;
     }
 
-    public void setPd(int pd) {
+    public void setPd(Integer pd) {
         this.pd = pd;
     }
 
-    public int getPdb() {
+    public Integer getPdb() {
         return pdb;
     }
 
-    public void setPdb(int pdb) {
+    public void setPdb(Integer pdb) {
         this.pdb = pdb;
     }
 
-    public int getKm() {
+    public Integer getKm() {
         return km;
     }
 
-    public void setKm(int km) {
+    public void setKm(Integer km) {
         this.km = km;
     }
 
-    public int getM() {
+    public Integer getM() {
         return m;
     }
 
-    public void setM(int m) {
+    public void setM(Integer m) {
         this.m = m;
     }
 
@@ -121,35 +121,35 @@ public class Deviation implements Serializable {
         this.deviation = deviation;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
-    public int getExcursion() {
+    public Integer getExcursion() {
         return excursion;
     }
 
-    public void setExcursion(int excursion) {
+    public void setExcursion(Integer excursion) {
         this.excursion = excursion;
     }
 
-    public int getLength() {
-        return length;
+    public Integer getDeviationLength() {
+        return deviationLength;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public void setDeviationLength(Integer deviationLength) {
+        this.deviationLength = deviationLength;
     }
 
-    public int getRate() {
+    public Integer getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(Integer rate) {
         this.rate = rate;
     }
 
@@ -176,4 +176,6 @@ public class Deviation implements Serializable {
     public void setFirm(Firm firm) {
         this.firm = firm;
     }
+
+    
 }

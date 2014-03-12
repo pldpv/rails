@@ -1,7 +1,6 @@
-
-
 package ua.gov.uz.pv.entity;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,56 +9,56 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity(name="rail_wear")
-public class RailWear {
+public class RailWear implements Serializable {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     @Column
-    private int year;
-    private float horizontalWear;
-    private float verticalWear;
-    private float corrugatedWear;
+    private Integer year;
+    private Float horizontalWear;
+    private Float verticalWear;
+    private Float corrugatedWear;
     @ManyToOne
     @JoinColumn(name="idRails",referencedColumnName="idRail")
     private RailsCharacteristics railsCharacteristics;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
-    public float getHorizontalWear() {
+    public Float getHorizontalWear() {
         return horizontalWear;
     }
 
-    public void setHorizontalWear(float horizontalWear) {
+    public void setHorizontalWear(Float horizontalWear) {
         this.horizontalWear = horizontalWear;
     }
 
-    public float getVerticalWear() {
+    public Float getVerticalWear() {
         return verticalWear;
     }
 
-    public void setVerticalWear(float verticalWear) {
+    public void setVerticalWear(Float verticalWear) {
         this.verticalWear = verticalWear;
     }
 
-    public float getCorrugatedWear() {
+    public Float getCorrugatedWear() {
         return corrugatedWear;
     }
 
-    public void setCorrugatedWear(float corrugatedWear) {
+    public void setCorrugatedWear(Float corrugatedWear) {
         this.corrugatedWear = corrugatedWear;
     }
 

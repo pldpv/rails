@@ -1,25 +1,21 @@
 package ua.gov.uz.pv.entity;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
-@Entity(name = "pch_direction")
-public class PchDirection implements Serializable {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+@Entity(name="rails_in_line")
+@PrimaryKeyJoinColumn(name="id",referencedColumnName="id")
+public class RailsInLine extends RailsLocation{
     @Column
     private Integer line;
-    private Integer kmS;
-    private Integer mS;
-    private Integer kmE;
-    private Integer mE;
+    private Integer km;
+    private Integer pk;
+    private Integer m;
+    private Integer numberOfSkeleton;
+    private String rail;
     @ManyToOne
     @JoinColumn(name = "idRailway", referencedColumnName = "idRailway")
     private Railway railway;
@@ -30,14 +26,6 @@ public class PchDirection implements Serializable {
     @JoinColumn(name = "namePch", referencedColumnName = "nameFirm")
     private Firm firm;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getLine() {
         return line;
     }
@@ -46,36 +34,44 @@ public class PchDirection implements Serializable {
         this.line = line;
     }
 
-    public Integer getKmS() {
-        return kmS;
+    public Integer getKm() {
+        return km;
     }
 
-    public void setKmS(Integer kmS) {
-        this.kmS = kmS;
+    public void setKm(Integer km) {
+        this.km = km;
     }
 
-    public Integer getmS() {
-        return mS;
+    public Integer getPk() {
+        return pk;
     }
 
-    public void setmS(Integer mS) {
-        this.mS = mS;
+    public void setPk(Integer pk) {
+        this.pk = pk;
     }
 
-    public Integer getKmE() {
-        return kmE;
+    public Integer getM() {
+        return m;
     }
 
-    public void setKmE(Integer kmE) {
-        this.kmE = kmE;
+    public void setM(Integer m) {
+        this.m = m;
     }
 
-    public Integer getmE() {
-        return mE;
+    public Integer getNumberOfSkeleton() {
+        return numberOfSkeleton;
     }
 
-    public void setmE(Integer mE) {
-        this.mE = mE;
+    public void setNumberOfSkeleton(Integer numberOfSkeleton) {
+        this.numberOfSkeleton = numberOfSkeleton;
+    }
+
+    public String getRail() {
+        return rail;
+    }
+
+    public void setRail(String rail) {
+        this.rail = rail;
     }
 
     public Railway getRailway() {

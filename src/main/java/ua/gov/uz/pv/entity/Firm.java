@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class Firm implements Serializable{
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     @Column
     private String nameFirm;
     private String fullName;
@@ -21,11 +21,11 @@ public class Firm implements Serializable{
     @ManyToOne
     @JoinColumn(name ="idRailway", referencedColumnName="idRailway")
     private Railway railway;
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -11,24 +11,24 @@ public class Railway implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     @Column
-    private int idRailway;
+    private Integer idRailway;
     private String nameRailway;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getIdRailway() {
+    public Integer getIdRailway() {
         return idRailway;
     }
 
-    public void setIdRailway(int idRailway) {
+    public void setIdRailway(Integer idRailway) {
         this.idRailway = idRailway;
     }
 

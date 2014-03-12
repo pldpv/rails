@@ -2,34 +2,41 @@ package ua.gov.uz.pv.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Cascade;
 
 @Entity(name="rails_characteristics")
 public class RailsCharacteristics implements Serializable{
     @Id
     @GeneratedValue
-    private int idRail;
+    private Integer idRail;
     @Column
     private String typeRails;
     private String factory;
-    private int numberOfFusion;
+    private Integer numberOfFusion;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOfRoll;
     private String typeOfTemper;
-    private float passTonnage;
-    private float railLength;
+    private Float passTonnage;
+    private Float railLength;
     private String bondTypeS;
     private String bondTypeE;
+    @OneToMany(fetch=FetchType.EAGER,mappedBy="railsCharacteristics")
+    @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
+    private List<RailsLocation> railsLocation;
 
-    public int getIdRail() {
+    public Integer getIdRail() {
         return idRail;
     }
 
-    public void setIdRail(int idRail) {
+    public void setIdRail(Integer idRail) {
         this.idRail = idRail;
     }
 
@@ -49,11 +56,11 @@ public class RailsCharacteristics implements Serializable{
         this.factory = factory;
     }
 
-    public int getNumberOfFusion() {
+    public Integer getNumberOfFusion() {
         return numberOfFusion;
     }
 
-    public void setNumberOfFusion(int numberOfFusion) {
+    public void setNumberOfFusion(Integer numberOfFusion) {
         this.numberOfFusion = numberOfFusion;
     }
 
@@ -73,19 +80,19 @@ public class RailsCharacteristics implements Serializable{
         this.typeOfTemper = typeOfTemper;
     }
 
-    public float getPassTonnage() {
+    public Float getPassTonnage() {
         return passTonnage;
     }
 
-    public void setPassTonnage(float passTonnage) {
+    public void setPassTonnage(Float passTonnage) {
         this.passTonnage = passTonnage;
     }
 
-    public float getRailLength() {
+    public Float getRailLength() {
         return railLength;
     }
 
-    public void setRailLength(float railLength) {
+    public void setRailLength(Float railLength) {
         this.railLength = railLength;
     }
 
@@ -104,4 +111,13 @@ public class RailsCharacteristics implements Serializable{
     public void setBondTypeE(String bondTypeE) {
         this.bondTypeE = bondTypeE;
     }
+
+    public List<RailsLocation> getRailsLocation() {
+        return railsLocation;
+    }
+
+    public void setRailsLocation(List<RailsLocation> railsLocation) {
+        this.railsLocation = railsLocation;
+    }
+    
 }

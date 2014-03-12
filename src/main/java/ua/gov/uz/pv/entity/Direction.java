@@ -10,24 +10,24 @@ import javax.persistence.Id;
 public class Direction implements Serializable{
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     @Column
-    private int idDirection;
+    private Integer idDirection;
     private String nameDirection;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getIdDirection() {
+    public Integer getIdDirection() {
         return idDirection;
     }
 
-    public void setIdDirection(int idDirection) {
+    public void setIdDirection(Integer idDirection) {
         this.idDirection = idDirection;
     }
 

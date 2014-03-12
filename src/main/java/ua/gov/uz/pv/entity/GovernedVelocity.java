@@ -11,16 +11,16 @@ import javax.persistence.ManyToOne;
 public class GovernedVelocity implements Serializable {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
     @Column
-    private int line;
-    private int kmS;
-    private int mS;
-    private int kmE;
-    private int mE;
-    private int passengerVelocity;
-    private int freightVelocity;
-    private int uptownVelocity;
+    private Integer line;
+    private Integer kmS;
+    private Integer mS;
+    private Integer kmE;
+    private Integer mE;
+    private Integer passengerVelocity;
+    private Integer freightVelocity;
+    private Integer uptownVelocity;
     private String cause;
     @ManyToOne
     @JoinColumn(name="idRailway",referencedColumnName="idRailway")
@@ -32,75 +32,75 @@ public class GovernedVelocity implements Serializable {
     @JoinColumn(name="namePch",referencedColumnName="nameFirm")
     private Firm firm;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getLine() {
+    public Integer getLine() {
         return line;
     }
 
-    public void setLine(int line) {
+    public void setLine(Integer line) {
         this.line = line;
     }
 
-    public int getKmS() {
+    public Integer getKmS() {
         return kmS;
     }
 
-    public void setKmS(int kmS) {
+    public void setKmS(Integer kmS) {
         this.kmS = kmS;
     }
 
-    public int getmS() {
+    public Integer getmS() {
         return mS;
     }
 
-    public void setmS(int mS) {
+    public void setmS(Integer mS) {
         this.mS = mS;
     }
 
-    public int getKmE() {
+    public Integer getKmE() {
         return kmE;
     }
 
-    public void setKmE(int kmE) {
+    public void setKmE(Integer kmE) {
         this.kmE = kmE;
     }
 
-    public int getmE() {
+    public Integer getmE() {
         return mE;
     }
 
-    public void setmE(int mE) {
+    public void setmE(Integer mE) {
         this.mE = mE;
     }
 
-    public int getPassengerVelocity() {
+    public Integer getPassengerVelocity() {
         return passengerVelocity;
     }
 
-    public void setPassengerVelocity(int passengerVelocity) {
+    public void setPassengerVelocity(Integer passengerVelocity) {
         this.passengerVelocity = passengerVelocity;
     }
 
-    public int getFreightVelocity() {
+    public Integer getFreightVelocity() {
         return freightVelocity;
     }
 
-    public void setFreightVelocity(int freightVelocity) {
+    public void setFreightVelocity(Integer freightVelocity) {
         this.freightVelocity = freightVelocity;
     }
 
-    public int getUptownVelocity() {
+    public Integer getUptownVelocity() {
         return uptownVelocity;
     }
 
-    public void setUptownVelocity(int uptownVelocity) {
+    public void setUptownVelocity(Integer uptownVelocity) {
         this.uptownVelocity = uptownVelocity;
     }
 
@@ -135,4 +135,6 @@ public class GovernedVelocity implements Serializable {
     public void setFirm(Firm firm) {
         this.firm = firm;
     }
+
+    
 }
