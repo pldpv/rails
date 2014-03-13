@@ -9,5 +9,21 @@
     <property name="hibernate.connection.password">pld1</property>
     <property name="hibernate.connection.pool_size">1</property>
     <property name="hibernate.show_sql">true</property>
+    <mapping class="ua.gov.uz.pv.entity.ContiniousSpaceInterval"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.Deviation"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.Direction"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.Firm"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.GovernedVelocity"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.PchDirection"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.RailWear"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.RailsCharacteristics"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.RailsInLine"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.RailsLocation"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.RailsStock"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.Railway"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.RailwayDirection"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.ScrapMetal"></mapping>
+    <mapping class="ua.gov.uz.pv.entity.WorkingCapacity"></mapping>
+    
   </session-factory>
 </hibernate-configuration>

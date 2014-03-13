@@ -3,6 +3,7 @@ package ua.gov.uz.pv.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,6 +29,8 @@ public class RailsCharacteristics implements Serializable{
     private Float railLength;
     private String bondTypeS;
     private String bondTypeE;
+    @OneToMany(fetch=FetchType.EAGER,mappedBy="railsCharacteristics")
+    private Set<RailWear> railWear;
     @OneToMany(fetch=FetchType.EAGER,mappedBy="railsCharacteristics")
     @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
     private List<RailsLocation> railsLocation;
@@ -119,5 +122,14 @@ public class RailsCharacteristics implements Serializable{
     public void setRailsLocation(List<RailsLocation> railsLocation) {
         this.railsLocation = railsLocation;
     }
+
+    public Set<RailWear> getRailWear() {
+        return railWear;
+    }
+
+    public void setRailWear(Set<RailWear> railWear) {
+        this.railWear = railWear;
+    }
+
     
 }

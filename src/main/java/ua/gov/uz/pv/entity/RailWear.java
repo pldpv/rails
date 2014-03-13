@@ -18,10 +18,10 @@ public class RailWear implements Serializable {
     private Float horizontalWear;
     private Float verticalWear;
     private Float corrugatedWear;
+    private Integer idRails;
     @ManyToOne
-    @JoinColumn(name="idRails",referencedColumnName="idRail")
+    @JoinColumn(name="idRails")
     private RailsCharacteristics railsCharacteristics;
-
     public Integer getId() {
         return id;
     }
@@ -60,6 +60,14 @@ public class RailWear implements Serializable {
 
     public void setCorrugatedWear(Float corrugatedWear) {
         this.corrugatedWear = corrugatedWear;
+    }
+
+    public Integer getIdRails() {
+        return idRails;
+    }
+
+    public void setIdRails(Integer idRails) {
+        this.idRails = idRails;
     }
 
     public RailsCharacteristics getRailsCharacteristics() {

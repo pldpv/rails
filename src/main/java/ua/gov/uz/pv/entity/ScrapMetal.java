@@ -1,6 +1,5 @@
 package ua.gov.uz.pv.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +7,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 @Entity(name="scrap_metal")
 @PrimaryKeyJoinColumn(name="id",referencedColumnName="id")
-public class ScrapMetal 
-        extends RailsLocation implements Serializable{
+public class ScrapMetal extends RailsLocation {
     @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateScrapping;
