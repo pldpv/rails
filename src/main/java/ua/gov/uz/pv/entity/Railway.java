@@ -9,6 +9,15 @@ import javax.persistence.Id;
 @Entity(name = "railway")
 public class Railway implements Serializable {
 
+    public Railway() {
+    }
+
+    public Railway(Integer id, Integer idRailway, String nameRailway) {
+        this.id = id;
+        this.idRailway = idRailway;
+        this.nameRailway = nameRailway;
+    }
+
     @Id
     @GeneratedValue
     private Integer id;

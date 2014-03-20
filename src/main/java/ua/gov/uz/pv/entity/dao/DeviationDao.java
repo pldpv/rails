@@ -7,7 +7,6 @@ package ua.gov.uz.pv.entity.dao;
 
 import java.util.Date;
 import java.util.List;
-import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
