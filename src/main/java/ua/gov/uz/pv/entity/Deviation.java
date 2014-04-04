@@ -2,6 +2,7 @@ package ua.gov.uz.pv.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+
 
 @Entity
 public class Deviation implements Serializable {
@@ -49,14 +51,7 @@ public class Deviation implements Serializable {
         this.id = id;
     }
 
-    public Date getDateMeasuring() {
-        return dateMeasuring;
-    }
-
-    public void setDateMeasuring(Date dateMeasuring) {
-        this.dateMeasuring = dateMeasuring;
-    }
-
+  
     public String getMeasuring() {
         return measuring;
     }
@@ -177,5 +172,13 @@ public class Deviation implements Serializable {
         this.firm = firm;
     }
 
-    
+    public Date getDateMeasuring() {
+        return dateMeasuring;
+    }
+
+    public void setDateMeasuring(Date dateMeasuring) {
+        this.dateMeasuring = dateMeasuring;
+    }
+
+ 
 }

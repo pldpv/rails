@@ -1,27 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package ua.gov.uz.pv.entity.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import ua.gov.uz.pv.entity.Deviation;
 import ua.gov.uz.pv.entity.Firm;
 import ua.gov.uz.pv.entity.PchDirection;
 import ua.gov.uz.pv.entity.Railway;
+import ua.gov.uz.pv.entity.WorkingCapacity;
 import ua.gov.uz.pv.util.HibernateUtil;
 
-/**
- *
- * @author œ√Ã
- */
 @ManagedBean(name="analizKM")
 @SessionScoped
 public class AnalizKMController {
@@ -31,6 +25,7 @@ public class AnalizKMController {
     private Integer selectedDirection;
     private Integer selectedKm;
     private Integer selectedLine;
+    private GregorianCalendar gcFirst,gcLast;
 
     public List<Railway> getAllRailways(){
         List<Railway> result=new ArrayList<Railway>();
@@ -62,11 +57,42 @@ public class AnalizKMController {
         session.close();
         return result;
     }
-
-    public void setSession(Session session) {
-        this.session = session;
+    public List<WorkingCapacity> getWorkingCapacityByKM(){
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<WorkingCapacity> result=new ArrayList<WorkingCapacity>();
+        result=session.createCriteria(WorkingCapacity.class)
+                .setFetchMode("railway", FetchMode.JOIN)
+                .setFetchMode("firm", FetchMode.JOIN)
+                .setFetchMode("direction", FetchMode.JOIN)
+                .add(Restrictions.eq("railway.idRailway", selectedRailway))
+                .add(Restrictions.eq("firm.nameFirm", selectedPch))
+                .add(Restrictions.eq("direction.idDirection", selectedDirection))
+                .add(Restrictions.eq("line", selectedLine))
+                .add(Restrictions.lt("kmS", selectedKm))
+                .add(Restrictions.gt("kmE", selectedKm))
+                .list();
+        session.close();
+        return result;
     }
-
+    public List<Deviation> getDeviationByKM(){
+        gcLast=new GregorianCalendar();
+        gcLast.add(Calendar.MONTH, -12);
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Deviation> result=new ArrayList<Deviation>();
+        result=session.createCriteria(Deviation.class)
+                .setFetchMode("railway", FetchMode.JOIN)
+                .setFetchMode("firm", FetchMode.JOIN)
+                .setFetchMode("direction", FetchMode.JOIN)
+         
+                .add(Restrictions.eq("railway.idRailway", selectedRailway))
+                .add(Restrictions.eq("firm.nameFirm", selectedPch))
+                .add(Restrictions.eq("direction.idDirection", selectedDirection))
+                .add(Restrictions.eq("line", selectedLine))
+                .add(Restrictions.eq("km", selectedKm))
+                .list();
+        session.close();
+        return result;
+    }
     public Integer getSelectedRailway() {
         return selectedRailway;
     }

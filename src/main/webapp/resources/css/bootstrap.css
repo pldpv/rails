@@ -490,6 +490,7 @@ h2,
 h3 {
   margin-top: 20px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 h4,
@@ -1397,6 +1398,7 @@ pre code {
 table {
   max-width: 100%;
   background-color: transparent;
+  margin: 0 auto;
 }
 
 th {
