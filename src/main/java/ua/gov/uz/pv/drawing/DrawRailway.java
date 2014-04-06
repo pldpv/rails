@@ -1,28 +1,24 @@
 package ua.gov.uz.pv.drawing;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import ua.gov.uz.pv.helper.IntervalInformation;
 
 /**
  *
  * @author œ√Ã
  */
-public abstract class DrawRailway {
-
-    abstract void draw();
-    static final Integer IMG_WIDTH = 1000;
-    static final Integer X_START = 200;
-    static final int Y_START = 0;
+public class DrawRailway {
     
-    /**
-     * 
-     * @param meter
-     * @return pixels
-     */
-    protected static final int metersToPixels(int meter) {
-        /**
-         * TODO Converting Meters into Pixels 
-         * depends on Image Width
-         */
-        return (IMG_WIDTH - X_START) * meter / 1000;
+    IntervalInformation ii;
+    int scale;
+         
+    
+    public void draw(Graphics g,Integer scale){};
+    public DrawRailway(IntervalInformation ii,int scale){
+        this.ii=ii;
+        this.scale=scale;
     }
+    
+   
 }

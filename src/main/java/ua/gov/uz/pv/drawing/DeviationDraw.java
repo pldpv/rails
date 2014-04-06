@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import javax.imageio.ImageIO;
 import ua.gov.uz.pv.entity.Deviation;
+import ua.gov.uz.pv.helper.IntervalInformation;
 
 /**
  *
@@ -42,7 +43,8 @@ public class DeviationDraw extends DrawRailway {
 
     }
 
-    public DeviationDraw(Deviation dev) {
+    public DeviationDraw(Deviation dev,IntervalInformation ii ,int scale) {
+        super(ii,scale);
         this.deviation = dev;
     }
 

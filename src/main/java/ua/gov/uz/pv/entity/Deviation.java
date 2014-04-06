@@ -2,7 +2,6 @@ package ua.gov.uz.pv.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Formula;
 
 
 @Entity
@@ -19,6 +19,7 @@ public class Deviation implements Serializable {
     @GeneratedValue
     private Integer id;
     @Column
+   
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateMeasuring;
     private String measuring;
@@ -42,7 +43,8 @@ public class Deviation implements Serializable {
     @ManyToOne
     @JoinColumn(name = "namePch", referencedColumnName = "nameFirm")
     private Firm firm;
-
+    @Formula("km*1000+m")
+    private Integer coordinate;
     public Integer getId() {
         return id;
     }
@@ -178,6 +180,14 @@ public class Deviation implements Serializable {
 
     public void setDateMeasuring(Date dateMeasuring) {
         this.dateMeasuring = dateMeasuring;
+    }
+
+    public Integer getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCoordinate(Integer coordinate) {
+        this.coordinate = coordinate;
     }
 
  
