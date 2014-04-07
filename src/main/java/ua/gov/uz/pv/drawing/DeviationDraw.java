@@ -21,9 +21,9 @@ import ua.gov.uz.pv.helper.IntervalInformation;
 
 /**
  *
- * @author ÏÃÌ
+ * @author ÐŸÐ“Ðœ
  */
-public class DeviationDraw extends DrawRailway {
+public class DeviationDraw extends Drawable {
 
     private final Deviation deviation;
     private static final Integer LINE_HEIGHT = 20;
@@ -32,7 +32,7 @@ public class DeviationDraw extends DrawRailway {
     private static final HashMap<String, Integer> devPos = new HashMap<String, Integer>();
     private static final Font fn = new Font("Arial", Font.PLAIN, LINE_HEIGHT - 1);
     private static Graphics2D g2;
-    
+  
     static {
         g2 = (Graphics2D) bImage.createGraphics();
         g2.setColor(Color.white);
@@ -103,17 +103,17 @@ public class DeviationDraw extends DrawRailway {
     private static void drawLegend() {
         //Map of deviations
 
-        devPos.put("Ï", 0);
-        devPos.put("Ð", LINE_HEIGHT);
-        devPos.put("Ó", 2*LINE_HEIGHT);
-        devPos.put("Ñóæ", 3*LINE_HEIGHT);
-        devPos.put("Ïð.ë", 4*LINE_HEIGHT);
-        devPos.put("Ïð.ï", 4*LINE_HEIGHT);
+        devPos.put("ÐŸ", 0);
+        devPos.put("Ð ", LINE_HEIGHT);
+        devPos.put("Ð£", 2*LINE_HEIGHT);
+        devPos.put("Ð¡ÑƒÐ¶", 3*LINE_HEIGHT);
+        devPos.put("ÐŸÑ€.Ð»", 4*LINE_HEIGHT);
+        devPos.put("ÐŸÑ€.Ð¿", 4*LINE_HEIGHT);
         FontMetrics f = g2.getFontMetrics(fn);
         
         g2.setFont(fn);
         g2.setColor(Color.black);
-        g2.drawString("Ñòàí Êîë³¿", X_START / 4 - f.stringWidth("Ñòàí Êîë³¿") / 2, IMG_HEIGHT / 2);
+        g2.drawString("Ð¡Ñ‚Ð°Ð½ ÐšÐ¾Ð»Ñ–Ñ—", X_START / 4 - f.stringWidth("Ð¡Ñ‚Ð°Ð½ ÐšÐ¾Ð»Ñ–Ñ—") / 2, IMG_HEIGHT / 2);
         for (String s : devPos.keySet()) {
 
             g2.setColor(Color.black);
@@ -122,8 +122,8 @@ public class DeviationDraw extends DrawRailway {
                     RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
             BasicStroke penBas = new BasicStroke(1);
             g2.setStroke(penBas);
-            if (s.equals("Ïð.ï") || s.equals("Ïð.ë")) {
-                g2.drawString("Ïð", X_START / 2 + X_START / 4 - f.stringWidth("Ïð") / 2, devPos.get(s) + LINE_HEIGHT-1);
+            if (s.equals("ÐŸÑ€.Ð¿") || s.equals("ÐŸÑ€.Ð»")) {
+                g2.drawString("ÐŸÑ€", X_START / 2 + X_START / 4 - f.stringWidth("ÐŸÑ€") / 2, devPos.get(s) + LINE_HEIGHT-1);
             } else {
                 g2.drawString(s, X_START / 2 + X_START / 4 - f.stringWidth(s) / 2, devPos.get(s) + LINE_HEIGHT-1);
             }
@@ -138,4 +138,5 @@ public class DeviationDraw extends DrawRailway {
             ex.printStackTrace();
         }
     }
+
 }

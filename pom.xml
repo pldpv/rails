@@ -7,9 +7,30 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>rails</name>
     <url>http://maven.apache.org</url>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <properties>       
         <org.richfaces.bom.version>4.3.5.Final</org.richfaces.bom.version>
         <gae.version>1.4.2</gae.version>
+        <project.build.sourceEncoding>windows-1251</project.build.sourceEncoding>
     </properties>
 
     <dependencyManagement>

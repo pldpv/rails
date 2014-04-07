@@ -5,11 +5,13 @@
  */
 package ua.gov.uz.pv.helper;
 
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.imageio.ImageIO;
 import org.hibernate.FetchMode;
@@ -18,52 +20,65 @@ import ua.gov.uz.pv.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import ua.gov.uz.pv.drawing.DrawDeviation;
-import ua.gov.uz.pv.drawing.DrawRailway;
+import ua.gov.uz.pv.drawing.Drawable;
 
 /**
  *
- * @author ≈‚„ÂÌ
+ * @author –ï–≤–≥–µ–Ω
  */
 public class RailwayItem {
 
-    List<Deviation> deviation;
-    
+    private List<Deviation> deviation;
+    private HashMap<List<Object>, BufferedImage> hm;
     Session session = null;
-    public IntervalInformation ii;
-    private final int imageScale;
+    private IntervalInformation ii;
+    private final int scale;
     private final BufferedImage bImage
-            = new BufferedImage(1000, 120, BufferedImage.TYPE_INT_RGB);
-    
-    public RailwayItem(Integer scale,IntervalInformation ii) {
-        this.imageScale = scale;
-        this.ii=ii;
+            = new BufferedImage(1000, 60, BufferedImage.TYPE_INT_RGB);
+
+    public RailwayItem(Integer scale, IntervalInformation ii) {
+        this.scale = scale;
+        this.ii = ii;
+        getDevList();
     }
 
-    private List<Deviation> getDevList(){
+    private void getDevList() {
         deviation = new ArrayList<Deviation>();
         session = HibernateUtil.getSessionFactory().openSession();
         deviation = session.createCriteria(Deviation.class)
                 .setFetchMode("direction", FetchMode.JOIN)
-                .add(Restrictions.eq("direction.idDirection",ii.idDirection))
-                .add(Restrictions.eq("line",ii.line))
-                .add(Restrictions.between("coordinate", ii.kmS*1000+ii.mS,ii.kmE*1000+ii.mE))
+                .add(Restrictions.eq("direction.idDirection", ii.idDirection))
+                .add(Restrictions.eq("line", ii.line))
+                .add(Restrictions.between("coordinate", ii.kmS * 1000 + ii.mS, ii.kmE * 1000 + ii.mE))
                 .list();
         session.close();
-       return deviation; 
-   }
-   
-   public void draw(){
-           for (Deviation dev:deviation){
-               DrawRailway drawDev=new DrawDeviation(dev,ii,imageScale);
-               Graphics2D g2 =bImage.createGraphics();
-               drawDev.draw(g2,imageScale);
-           }
-   }
-   public void saveImg() {
+    }
+
+    public List<Deviation> getList() {
+        return deviation;
+    }
+
+    public void draw() {
+        
+    }
+
+
+
+    public void saveImg() {
         try {
-            ImageIO.write(bImage, "PNG", new File("c:\\"+ii.kmS+","+ii.mS+".PNG"));
+            ImageIO.write(bImage, "PNG", new File("c:\\" + ii.kmS + "," + ii.mS + ".PNG"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+    
+    private BufferedImage drawDeviationList(){
+        BufferedImage bImage = new BufferedImage(1000, 60, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2=bImage.createGraphics();
+        for (Deviation dev : deviation) {
+            Drawable drawDev = new DrawDeviation(dev, g2, ii, scale);
+            drawDev.draw();
+        }
+        return bImage;
     }
 }

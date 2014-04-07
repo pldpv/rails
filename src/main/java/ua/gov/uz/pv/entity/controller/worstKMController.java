@@ -56,8 +56,8 @@ public class worstKMController {
                 .add(Restrictions.gt("dateMeasuring", getStartDate()))
                 .list();
         for (Deviation d : result) {
-            DeviationDraw dd = new DeviationDraw(d);
-            dd.draw();
+           // DeviationDraw dd = new DeviationDraw(d);
+       //     dd.draw();
         }
         session.close();
     }
@@ -136,6 +136,5 @@ public class worstKMController {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-
- 
 }
+ 

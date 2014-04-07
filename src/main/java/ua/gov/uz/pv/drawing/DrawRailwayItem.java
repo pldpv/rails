@@ -14,12 +14,13 @@ import ua.gov.uz.pv.helper.IntervalInformation;
 
 /**
  *
- * @author ֵגדום
+ * @author ?????
  */
 public class DrawRailwayItem {
     private List<RailwayItem> railItem=new ArrayList<RailwayItem>();
     IntervalInformation ii;
     private final Integer scale,length;
+    
     public DrawRailwayItem(Integer scale,IntervalInformation ii) {
         this.ii=ii;
         this.scale=scale;
@@ -42,17 +43,11 @@ public class DrawRailwayItem {
         return railItem;
     }
     public static void main(String ... args){
-        System.out.println("getList");
         IntervalInformation ii =new IntervalInformation(22403, 193,0 , 194, 18, 1);
         DrawRailwayItem dd=new DrawRailwayItem(100, ii);
         for (RailwayItem item:dd.getList()){
             item.draw();
             item.saveImg();
-            System.out.println("Start"+item.ii.kmS+" "+item.ii.mS
-                    +"-"+ item.ii.kmE+" "+item.ii.mE);
-            for (Deviation dev:item.getDevList()){
-                System.out.println("Deviation:"+dev.getKm()+" "+ dev.getM());
-            }
         }
     }
 }
