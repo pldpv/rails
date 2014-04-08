@@ -43,11 +43,11 @@ public class DrawRailwayItem {
         return railItem;
     }
     public static void main(String ... args){
-        IntervalInformation ii =new IntervalInformation(22403, 193,0 , 194, 18, 1);
+        IntervalInformation ii =new IntervalInformation(22403, 193,1 , 194, 18, 1);
         DrawRailwayItem dd=new DrawRailwayItem(100, ii);
         for (RailwayItem item:dd.getList()){
-            item.draw();
             item.saveImg();
         }
+        System.exit(0);
     }
 }

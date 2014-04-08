@@ -5,7 +5,6 @@
  */
 package ua.gov.uz.pv.drawing;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,30 +21,29 @@ public class DrawDeviation implements Drawable {
     private IntervalInformation ii;
     private int scale;
     private final Deviation deviation;
-    private static final Integer LINE_HEIGHT = 10;
+    private final Integer lineHeight;
     private static final HashMap<String, Integer> devPos = new HashMap<String, Integer>();
     private final int penWidth;
-    private Graphics2D g2;
+    private final Graphics2D g2;
     
-    public DrawDeviation(Deviation dev, Graphics g,IntervalInformation ii, int scale) {
+    public DrawDeviation(Deviation dev, Graphics g,IntervalInformation ii, int scale,int lineHeight) {
         this.ii=ii;
         this.scale=scale;
         this.deviation = dev;
+        this.lineHeight=lineHeight;
         g2=(Graphics2D)g;
         penWidth = 1000 / scale;
         devPos.put("П", 0);
-        devPos.put("Р", LINE_HEIGHT);
-        devPos.put("У", 2 * LINE_HEIGHT);
-        devPos.put("Суж", 3 * LINE_HEIGHT);
-        devPos.put("Пр.л", 4 * LINE_HEIGHT);
-        devPos.put("Пр.п", 5 * LINE_HEIGHT);
+        devPos.put("Р", lineHeight);
+        devPos.put("У", 2 * lineHeight);
+        devPos.put("Суж", 3 * lineHeight);
+        devPos.put("Пр.л", 4 * lineHeight);
+        devPos.put("Пр.п", 5 * lineHeight);
     }
-
     
     public void draw() {
-        drawGrid();
         g2.setColor(getColor());
-        g2.fillRect(getX(), getY(), penWidth, LINE_HEIGHT);
+        g2.fillRect(getX(), getY(), penWidth, lineHeight);
     }
 
     private Color getColor() {
@@ -66,24 +64,5 @@ public class DrawDeviation implements Drawable {
 
     private int getY() {
         return devPos.get(deviation.getDeviation());
-    }
-
-    private void drawGrid() {
-        float[] dash = {5, 3, 1, 3};
-        BasicStroke pen = new BasicStroke(1, BasicStroke.CAP_BUTT,
-                BasicStroke.JOIN_BEVEL, 10, dash, 0);
-
-        //Drawing working space grid
-        g2.setColor(Color.white);
-        g2.drawRect(0, 0, 999, 59);
-        for (int i = 100; i < 1000; i += 100) {
-            g2.drawLine(i, 0, i, LINE_HEIGHT * 6);
-        }
-        for (int i = LINE_HEIGHT; i < 6 * LINE_HEIGHT; i += LINE_HEIGHT) {
-            g2.setStroke(pen);
-            g2.setColor(Color.white);
-            g2.drawLine(0, i, 1000, i);
-        }
-
     }
 }

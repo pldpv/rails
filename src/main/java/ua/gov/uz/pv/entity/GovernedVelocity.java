@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Formula;
 
 
 public class GovernedVelocity implements Serializable {
@@ -22,6 +23,10 @@ public class GovernedVelocity implements Serializable {
     private Integer freightVelocity;
     private Integer uptownVelocity;
     private String cause;
+    @Formula("kmS*1000+mS")
+    private Integer startCoordinate;
+    @Formula("kmE*1000+mE")
+    private Integer endCoordinate;
     @ManyToOne
     @JoinColumn(name="idRailway",referencedColumnName="idRailway")
     private Railway railway;
@@ -134,6 +139,22 @@ public class GovernedVelocity implements Serializable {
 
     public void setFirm(Firm firm) {
         this.firm = firm;
+    }
+
+    public Integer getStartCoordinate() {
+        return startCoordinate;
+    }
+
+    public void setStartCoordinate(Integer startCoordinate) {
+        this.startCoordinate = startCoordinate;
+    }
+
+    public Integer getEndCoordinate() {
+        return endCoordinate;
+    }
+
+    public void setEndCoordinate(Integer endCoordinate) {
+        this.endCoordinate = endCoordinate;
     }
 
     
