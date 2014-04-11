@@ -2,13 +2,14 @@ package ua.gov.uz.pv.entity;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import org.hibernate.annotations.Formula;
 
-
+@Entity(name="governed_velocity")
 public class GovernedVelocity implements Serializable {
     @Id
     @GeneratedValue

@@ -34,18 +34,21 @@ public class DrawGovernedVelocity implements Drawable{
         this.lineHeight=lineHeight;
     }
     public void draw() {
-        Font f = new Font("Arial", Font.BOLD, lineHeight);
+        Font f = new Font("Arial", Font.PLAIN, lineHeight-1);
         FontMetrics fm = g2.getFontMetrics(f);
+        g2.setFont(f);
+        g2.setColor(Color.white);
+        g2.drawRect(0, 0, 999, lineHeight-1);
         g2.drawLine(getEndX(), 0, getEndX(), lineHeight);
         g2.setColor(getColor());
-        g2.drawString(getVelocity(), getStartX()+(getEndX()+getStartX()
+        g2.drawString(getVelocity(), getStartX()+(getEndX()-getStartX()
                 -fm.stringWidth(getVelocity()))/2 , lineHeight-1);
     }
     private int getStartX() {
         if (gv.getKmS()*1000+gv.getmS()<ii.kmS*1000+ii.mS){
             return 0;
         }else{
-            return ((gv.getKmS()-ii.kmS)*1000+gv.getmS()-ii.kmS)*1000/scale;
+            return ((gv.getKmS()-ii.kmS)*1000+gv.getmS()-ii.mS)*1000/scale;
         }
     }
     private int getEndX() {

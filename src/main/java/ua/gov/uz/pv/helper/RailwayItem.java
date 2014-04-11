@@ -41,9 +41,9 @@ public class RailwayItem {
     Session session = null;
     private IntervalInformation ii;
     private final int SCALE;
-    private static final int LINE_HEIGHT = 10;
+    private static final int LINE_HEIGHT = 20;
     private final Font FONT = new Font("Arial", Font.PLAIN, LINE_HEIGHT - 1);
-    private BufferedImage bImage = new BufferedImage(1000, 500, BufferedImage.TYPE_INT_RGB);
+    private BufferedImage bImage;
 
     public RailwayItem(Integer scale, IntervalInformation ii) {
         this.SCALE = scale;
@@ -51,35 +51,45 @@ public class RailwayItem {
     }
 
     public void draw() {
-      
+        BufferedImage b1 = drawRank();
+        BufferedImage b2 = drawGovernedVelocityList();
+        BufferedImage b3 = drawDeviationList();
+        bImage = new BufferedImage(1000, b1.getHeight() + b2.getHeight()
+                + b3.getHeight() - 3, BufferedImage.TYPE_INT_RGB);
+        Graphics g = bImage.getGraphics();
+        g.drawImage(b1, 0, 0, null);
+        g.drawImage(b2, 0, b1.getHeight() - 1, null);
+        g.drawImage(b3, 0, b1.getHeight() + b2.getHeight() - 2, null);
+        g.dispose();
     }
 
     public void saveImg() {
         try {
-            ImageIO.write(drawGovernedVelocityList(), "PNG", new File("c:\\" + ii.kmS + "," + ii.mS + ".PNG"));
+            ImageIO.write(bImage, "PNG", new File("c:\\" + ii.kmS + "," + ii.mS + ".PNG"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
-    private void getGovernedVelocity(){
+    private void getGovernedVelocity() {
         gv = new ArrayList<GovernedVelocity>();
         session = HibernateUtil.getSessionFactory().openSession();
-        Criterion cr1=Restrictions.lt("startCoordinate", ii.kmE*1000+ii.mE);
-        Criterion cr2=Restrictions.gt("endCoordinate", ii.kmS*1000+ii.mS);
+        Criterion cr1 = Restrictions.le("startCoordinate", ii.kmE * 1000 + ii.mE);
+        Criterion cr2 = Restrictions.ge("endCoordinate", ii.kmS * 1000 + ii.mS);
         gv = session.createCriteria(GovernedVelocity.class)
                 .setFetchMode("direction", FetchMode.JOIN)
                 .add(Restrictions.eq("direction.idDirection", ii.idDirection))
                 .add(Restrictions.eq("line", ii.line))
-               // .add(Restrictions.and(cr1,cr2))
+                .add(Restrictions.and(cr1, cr2))
                 .list();
         session.close();
     }
-    private List<GovernedVelocity> getVelocityList(){
+
+    private List<GovernedVelocity> getVelocityList() {
         getGovernedVelocity();
         return gv;
     }
-    
+
     private void getDeviations() {
         deviation = new ArrayList<Deviation>();
         session = HibernateUtil.getSessionFactory().openSession();
@@ -91,6 +101,7 @@ public class RailwayItem {
                 .list();
         session.close();
     }
+
     public List<Deviation> getDeviationList() {
         getDeviations();
         return deviation;
@@ -118,14 +129,16 @@ public class RailwayItem {
     private BufferedImage drawRank() {
         BufferedImage result = new BufferedImage(1000, LINE_HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2 = result.createGraphics();
+        g2.setFont(FONT);
+        g2.drawRect(0, 0, 999, LINE_HEIGHT - 1);
         FontMetrics fMetrics = g2.getFontMetrics(FONT);
         for (int i = 0; i < 10; i++) {
-            float rank = (ii.kmS * 1000 + ii.mS + i * SCALE / 10) / 1000f;
-            g2.drawString(String.format("%.3f%n", rank), i * 100, LINE_HEIGHT - 1);
+            float rank = (ii.kmS * 1000 + ii.mS - 1 + i * SCALE / 10) / 1000f;
+            g2.drawString(String.format("%.3f%n", rank), i * 100 - fMetrics.stringWidth(String.format("%.3f%n", rank)) / 2, LINE_HEIGHT - 1);
         }
         return result;
     }
-    
+
     private BufferedImage drawDeviationList() {
         BufferedImage result = new BufferedImage(1000, 6 * LINE_HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2 = result.createGraphics();
@@ -136,11 +149,11 @@ public class RailwayItem {
         }
         return result;
     }
-    private BufferedImage drawGovernedVelocityList(){
+
+    private BufferedImage drawGovernedVelocityList() {
         BufferedImage result = new BufferedImage(1000, LINE_HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2 = result.createGraphics();
-        drawGrid(g2, 0);
-        for (GovernedVelocity gv:getVelocityList()){
+        for (GovernedVelocity gv : getVelocityList()) {
             Drawable drawGV = new DrawGovernedVelocity(gv, g2, ii, SCALE, LINE_HEIGHT);
             drawGV.draw();
         }
