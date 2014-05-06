@@ -58,7 +58,7 @@ public class DeviationDraw extends Drawable {
         BasicStroke pen1= new BasicStroke(2);
         g2.setStroke(pen1);
         g2.drawLine(deviation.getM() + X_START, getYpos(),
-             deviation.getM() + X_START, getYpos() + LINE_HEIGHT);
+ //            deviation.getM() + X_START, getYpos() + LINE_HEIGHT);
         saveImg();
     }
 
