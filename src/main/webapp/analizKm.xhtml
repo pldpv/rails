@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <ui:composition template="/templates/template.xhtml">
+        <ui:define name="top">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGrid id ="requestSelection" columns="5">
+                    <h:outputLabel>Дорога</h:outputLabel>
+                    <h:outputLabel>ПЧ</h:outputLabel>
+                    <h:outputLabel>Направление</h:outputLabel>
+                    <h:outputLabel>КМ</h:outputLabel>
+                    <h:outputLabel>Путь</h:outputLabel>
+                    <h:selectOneMenu id="railway" value="#{analizKM.selectedRailway}" required="true">
+                        <f:ajax event="change" execute="@this" render="pch"/>
+                        <f:selectItem itemLabel="Выберите ж.д." itemValue="" />
+                        <f:selectItems  value="#{analizKM.allRailways}" var="w" itemValue="#{w.idRailway}" itemLabel="#{w.nameRailway}" />
+                    </h:selectOneMenu>
+                    <h:selectOneMenu id="pch" value="#{analizKM.selectedPch}" required="true">
+                        <f:selectItem itemLabel="Выберите ПЧ" itemValue="" />
+                        <f:selectItems  value="#{analizKM.allFirmsByRailway}" var="a" itemValue="#{a.nameFirm}" itemLabel="#{a.nameFirm}" />
+                        <a4j:ajax event="change" execute="@this" render="direction" immediate="false"/>
+                    </h:selectOneMenu>
+                    <h:selectOneMenu id="direction" value="#{analizKM.selectedDirection}" required="true">
+                        <f:selectItem itemLabel="Выберите Направление" itemValue="" />
+                        <f:selectItems  value="#{analizKM.directionByPch}" var="d" itemValue="#{d.direction.idDirection}" itemLabel="#{d.direction.nameDirection}" />
+                    </h:selectOneMenu>
+                    
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+       
+    </ui:composition>
+
+</html>

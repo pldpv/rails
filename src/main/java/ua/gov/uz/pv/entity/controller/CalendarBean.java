@@ -7,8 +7,8 @@
 package ua.gov.uz.pv.entity.controller;
 
 import java.util.Date;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 
 
@@ -17,12 +17,11 @@ import javax.faces.bean.ManagedBean;
  * @author œ√Ã
  */
 @ManagedBean(name="calendarBean")
-@ApplicationScoped
+@SessionScoped
 public class CalendarBean {
 private Date startDate;
 private Date endDate; 
     public CalendarBean() {
-        
     }
 
     public Date getStartDate() {

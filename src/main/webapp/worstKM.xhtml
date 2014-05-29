@@ -10,10 +10,11 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a4j="http://richfaces.org/a4j"
-      xmlns:rich="http://richfaces.org/rich">
+      xmlns:rich="http://richfaces.org/rich"
+      >
 
     <ui:composition template="/templates/template.xhtml">
-        <ui:define name="body">
+        <ui:define name="top">
             <h:form styleClass="jsfcrud_list_form">
                 <h:panelGrid columns="2">
                     <h:outputLabel>Дорога</h:outputLabel>
@@ -21,21 +22,29 @@ and open the template in the editor.
                     <h:selectOneMenu value="#{worstKM.selectedRailway}">
                         <f:selectItems  value="#{worstKM.allRailways}" var="w" itemValue="#{w.idRailway}" itemLabel="#{w.nameRailway}" />
                     </h:selectOneMenu>
-                    <h:panelGrid columns="2">
-                        
+                    <h:panelGrid columns="5">
+                        <h:outputLabel>От</h:outputLabel>
                         <a4j:outputPanel id="calendarStart" layout="block">
                             <rich:calendar
-                                value="#{calendarBean.startDate}"/>
+                                value="#{worstKM.startDate}"/>
                         </a4j:outputPanel>
-                        
+                        <h:outputLabel>До</h:outputLabel>    
                         <a4j:outputPanel id="calendarEnd" layout="block">
                             <rich:calendar
-                                value="#{calendarBean.endDate}"/>
+                                value="#{worstKM.endDate}"/>
                         </a4j:outputPanel>
+                        <h:commandButton value="Результат">
+                            <f:ajax event="click" execute="#{worstKM.navigate()}" render="id1 id2"/>
+                        </h:commandButton>                            
                     </h:panelGrid>
                 </h:panelGrid>
-
             </h:form>
         </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="id1" rendered="#{worstKM.result}">True</h:panelGroup>
+           <h:panelGroup id="id2" rendered="#{worstKM.notFound}">False</h:panelGroup>
+        </ui:define>
+        
     </ui:composition>
+    
 </html>
